@@ -22,6 +22,7 @@ export class TodosComponent implements OnInit {
     );
   }
   deleteTodo(id){
-    this.service.delete(id).subscribe(todos => this.todos = todos);
+    if (confirm('Delete?'))
+      this.service.delete(id).subscribe(todos => this.todos = todos);
   }
 }

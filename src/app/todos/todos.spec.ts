@@ -39,4 +39,17 @@ describe('TodosComponent', () => {
     component.addTodo(null);
     expect(component.error).toBe(errMsg);
   });
+  it('should call delete method after confirm', () => {
+    const id = 1;
+    spyOn(window, 'confirm').and.returnValue(true);
+    const spy = spyOn(service, 'delete').and.returnValue(empty());
+    component.deleteTodo(id);
+    expect(spy).toHaveBeenCalledWith(1);
+  });
+  it('should NOT call delete method after discard', () => {
+    spyOn(window, 'confirm').and.returnValue(false);
+    const spy = spyOn(service, 'delete').and.returnValue(empty());
+    component.deleteTodo(0);
+    expect(spy).not.toHaveBeenCalled();
+  });
 });
