@@ -7,6 +7,7 @@ import {TodosService} from './todos.service';
 })
 export class TodosComponent implements OnInit {
   todos: any[] = [];
+  error: string;
 
   constructor(private service: TodosService){}
 
@@ -15,7 +16,10 @@ export class TodosComponent implements OnInit {
   }
 
   addTodo(item){
-    this.service.add(item).subscribe(todos => this.todos = todos);
+    this.service.add(item).subscribe(
+      todos => this.todos = todos,
+      err => this.error = err
+    );
   }
   deleteTodo(id){
     this.service.delete(id).subscribe(todos => this.todos = todos);
