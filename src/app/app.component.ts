@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'unit-testing';
+  currentNum = 0;
+
+  increment(){
+    this.currentNum ++;
+  }
+
+  decrement(){
+    this.currentNum --;
+  }
 }

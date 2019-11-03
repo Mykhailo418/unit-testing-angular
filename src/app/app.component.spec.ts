@@ -3,26 +3,24 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
-  }));
-
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
+  let component: AppComponent;
+  beforeEach(() => {
+    component = new AppComponent();
   });
+  afterEach(() => {});
+  beforeAll(() => {});
+  afterAll(() => {});
 
-  it(`should have as title 'unit-testing'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('unit-testing');
+  it('should increment current number', () => {
+    // Arrange
+    const component = new AppComponent();
+    // Act
+    component.increment();
+    // Assert
+    expect(component.currentNum).toBe(1);
+  });
+  it('should decrement current number', () => {
+    component.decrement();
+    expect(component.currentNum).toBe(-1);
   });
 });
