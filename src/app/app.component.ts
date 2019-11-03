@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,15 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'unit-testing';
   currentNum = 0;
+  form: FormGroup;
+  valueChanged = new EventEmitter();
+
+  constructor(fb: FormBuilder){
+    this.form = fb.group({
+      name: ['', Validators.required],
+      email: ['']
+    });
+  }
 
   increment(){
     this.currentNum ++;
@@ -15,5 +25,9 @@ export class AppComponent {
 
   decrement(){
     this.currentNum --;
+  }
+
+  emitValue(){
+    this.valueChanged.emit(this.currentNum);
   }
 }
