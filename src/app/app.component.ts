@@ -30,4 +30,9 @@ export class AppComponent {
   emitValue(){
     this.valueChanged.emit(this.currentNum);
   }
+
+  incrementEmitValue(){
+    this.increment();
+    this.emitValue();
+  }
 }

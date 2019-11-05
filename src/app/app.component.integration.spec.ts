@@ -37,4 +37,9 @@ describe('AppComponent - Integration Tests', () => {
     let btn = fixture.debugElement.query(By.css('button.btn'));
     expect(btn.classes['btn-success']).toBeTruthy();
   });
+  it('should increase current number after clicking on button', () => {
+    let btn = fixture.debugElement.query(By.css('button.btn'));
+    btn.triggerEventHandler('click', null);
+    expect(component.currentNum).toBe(1);
+  });
 });
