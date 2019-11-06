@@ -8,7 +8,7 @@ describe('TodosComponent', () => {
 
   beforeEach(() => {
     service = new TodosService(null);
-    component = new TodosComponent(service);
+    component = new TodosComponent(service, null, null);
   });
 
   it('should set todos from the service', () => {
