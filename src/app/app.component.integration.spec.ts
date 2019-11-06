@@ -3,7 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
+import { RouterOutlet, RouterLinkWithHref } from '@angular/router';
 import { AppComponent } from './app.component';
+import { routes } from './app-routing.module';
+import { TodosComponent } from './todos/todos.component';
 
 describe('AppComponent - Integration Tests', () => {
   let component: AppComponent;
@@ -11,9 +14,9 @@ describe('AppComponent - Integration Tests', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AppComponent],
+      declarations: [AppComponent, TodosComponent],
       imports: [
-        BrowserModule, ReactiveFormsModule
+        BrowserModule, ReactiveFormsModule, RouterTestingModule.withRoutes(routes)
       ],
     })
     .compileComponents();
@@ -41,5 +44,14 @@ describe('AppComponent - Integration Tests', () => {
     let btn = fixture.debugElement.query(By.css('button.btn'));
     btn.triggerEventHandler('click', null);
     expect(component.currentNum).toBe(1);
+  });
+  it('should have a router outlet', () => {
+    const el = fixture.debugElement.query(By.directive(RouterOutlet));
+    expect(el).not.toBeNull();
+  });
+  it('should have a router link to todos page', () => {
+    const links = fixture.debugElement.queryAll(By.directive(RouterLinkWithHref));
+    const index = links.findIndex(link => link.properties['href'] === '/todos')
+    expect(index).toBeGreaterThan(-1);
   });
 });

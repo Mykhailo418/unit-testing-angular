@@ -1,8 +1,9 @@
 <div style="text-align:center">
   <h1>{{ title }}</h1>
+  <a routerLink="todos">todos</a>
   <button class="btn"
     [class.btn-success]="currentNum == 1"
     (click)="incrementEmitValue()"
   >{{currentNum}}</button>
 </div>
-<!-- <router-outlet></router-outlet> -->
+<router-outlet></router-outlet>

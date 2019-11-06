@@ -10,7 +10,7 @@ class RouterStub {
 }
 
 class ActivatedRouteStub {
-  private obser: Observable<any> = of(null);
+  private obser: Observable<any> = of({});
 
   push(value: Observable<any>){
     this.obser = value;
