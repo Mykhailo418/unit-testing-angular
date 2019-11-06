@@ -10,7 +10,17 @@ class RouterStub {
 }
 
 class ActivatedRouteStub {
-  params: Observable<any> = empty();
+  private obser: Observable<any> = of(null);
+
+  push(value: Observable<any>){
+    this.obser = value;
+  }
+
+  get params(){
+    return this.obser;
+  }
+
+  //params: Observable<any> = empty();
 }
 
 describe('TodosComponent - Integration Tests', () => {
@@ -48,5 +58,13 @@ describe('TodosComponent - Integration Tests', () => {
     const spy = spyOn(router, 'navigate');
     component.navigateTodo();
     expect(spy).toHaveBeenCalledWith(['todos']);
+  });
+  it('should navigate to no-found page if id is 0 or invalid', () => {
+    const router = TestBed.get(Router);
+    const spy = spyOn(router, 'navigate');
+    const route: ActivatedRouteStub = TestBed.get(ActivatedRoute);
+    route.push(of({id: 0}));
+    fixture.detectChanges();
+    expect(spy).toHaveBeenCalledWith(['not-found']);
   });
 });
