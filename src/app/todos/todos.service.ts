@@ -13,6 +13,9 @@ export class TodosService {
   getTodos(){
     return of(this.todos);
   }
+  getTodosPromise(){
+    return Promise.resolve(this.todos);
+  }
   add(item){
     this.todos.push(item);
     return this.getTodos();

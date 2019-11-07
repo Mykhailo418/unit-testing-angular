@@ -35,4 +35,7 @@ export class TodosComponent implements OnInit {
   navigateTodo(){
     this.router.navigate(['todos']);
   }
+  getTodosAsync(){
+    this.service.getTodosPromise().then(todos => this.todos = todos);
+  }
 }

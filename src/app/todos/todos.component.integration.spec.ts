@@ -67,4 +67,13 @@ describe('TodosComponent - Integration Tests', () => {
     fixture.detectChanges();
     expect(spy).toHaveBeenCalledWith(['not-found']);
   });
+  it('should loads toods from the service from async method via promise', async(() => {
+    let service = TestBed.get(TodosService);
+    const todosFake = [2, 3, 4];
+    spyOn(service, 'getTodosPromise').and.returnValue(Promise.resolve(todosFake));
+    component.getTodosAsync();
+    fixture.whenStable().then(() => {
+      expect(component.todos).toBe(todosFake);
+    });
+  }));
 });
