@@ -18,6 +18,7 @@ describe('AppComponent - Integration Tests', () => {
       imports: [
         BrowserModule, ReactiveFormsModule, RouterTestingModule.withRoutes(routes)
       ],
+      //schemas: [NO_ERRORS_SCHEMA] // ignore errors that related to unrecognized components in html
     })
     .compileComponents();
   }));
